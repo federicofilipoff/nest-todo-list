@@ -4,6 +4,12 @@
 git clone https://github.com/federicofilipoff/nest-todo-list
 ```
 
+# Dirigirse a la carpeta del proyecto
+
+```bash
+cd nest-todo-list
+```
+
 # Instalar dependencias
 
 ```bash
