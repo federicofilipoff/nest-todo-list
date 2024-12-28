@@ -16,11 +16,16 @@ cd nest-todo-list
 npm install
 ```
 
-# Crear base de datos
+# Crear variable de entorno
 
-1. Crear un archivo .env en la raiz del proyecto.
-2. Incluir la siguiente línea: DATABASE_URL="file:../database/base_datos.db"
-3. modificar el nombre del archivo de la base de datos.
+```bash
+echo DATABASE_URL="file:../database/base_datos.db" > .env
+```
+
+1. Ejecutar comando para crear varible de entorno en la raiz del proyecto.
+2. Editar el archivo para modificar el nombre de la base de datos.
+
+# Crear base de datos
 
 ```bash
 npx prisma db push
