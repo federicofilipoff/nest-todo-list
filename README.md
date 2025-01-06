@@ -1,50 +1,52 @@
-# Clonar proyecto
+# Nest TO-DO LIST
+
+## Clonar proyecto
 
 ```bash
 git clone https://github.com/federicofilipoff/nest-todo-list
 ```
 
-# Dirigirse a la carpeta del proyecto
+## Dirigirse a la carpeta del proyecto
 
 ```bash
 cd nest-todo-list
 ```
 
-# Instalar dependencias
+## Instalar dependencias
 
 ```bash
 npm install
 ```
 
-# Crear variable de entorno
+## Crear archivo de configuración
 
-```bash
-echo DATABASE_URL="file:../database/base_datos.db" > .env
-```
+Utilizar como referencia el archivo `.env.example` ubicado en la raiz del proyecto
+para crear el archivo `.env`.
 
-1. Ejecutar comando para crear varible de entorno en la raiz del proyecto.
-2. Editar el archivo para modificar el nombre de la base de datos.
+## Crear base de datos
 
-# Crear base de datos
+Generar la base de datos según el esquema definido en Prisma.
 
 ```bash
 npx prisma db push
 ```
 
-# Ejecutar Script para poblar de datos la base de datos
+## Poblar la base de datos con datos iniciales
+
+Añade datos de ejemplo a la base de datos.
 
 ```bash
 npm run seed
 ```
 
-# Ejecutar servidor en modo desarrollo
+## Ejecutar servidor en modo desarrollo
 
-El servidor se inicia en el puerto 3000 (LocalHost: 3000)
+El servidor se iniciará en el puerto 3000. Acceder desde http://localhost:3000.
 
 ```bash
 npm run start:dev
 ```
 
-# Documentación de APIS (Swagger)
+## Documentación de APIS (Swagger)
 
-Dirigirse a: http://localhost:3000/api-docs/
+La documentación de la API está disponible en http://localhost:3000/api-docs/.
