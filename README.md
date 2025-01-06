@@ -20,8 +20,7 @@ npm install
 
 ## Crear archivo de configuración
 
-Utilizar como referencia el archivo `.env.example` ubicado en la raiz del proyecto
-para crear el archivo `.env`.
+Dirigirse al proyecto y utilizar como referencia el archivo `.env.example` para crear el archivo `.env` o simplemente renombrarlo.
 
 ## Crear base de datos
 
