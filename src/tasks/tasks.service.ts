@@ -7,6 +7,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class TasksService {
   constructor (private readonly prisma: PrismaService) {};
 
+  // Buscar tarea para idenficiar si existe o no
   private async findTaskById(id: number) {
     const aTask = await this.prisma.task.findUnique({where: { id }});
     if (aTask) {
@@ -21,61 +22,36 @@ export class TasksService {
 
   async create(createTaskDto: CreateTaskDto) {
     const { descripcion } = createTaskDto;
-    const newTask = await this.prisma.task.create({
+    return await this.prisma.task.create({
       data: {
         descripcion,
         completada: false,
       }
     })
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Registro creado',
-      result: newTask
-    }
   };
 
   async findAll() {
-    const allTasks = await this.prisma.task.findMany();
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Lista de registros',
-      result: allTasks
-    }
+    return await this.prisma.task.findMany();
   };
 
   async findOne(id: number) {
-    const aTask = await this.findTaskById(id);
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Registro encontrado',
-      result: aTask
-    }
+    return await this.findTaskById(id);
   };
 
   async update(id: number, updateTaskDto: UpdateTaskDto) {
     const { descripcion, completada } = updateTaskDto;
     await this.findTaskById(id);
-    const updatedTask =  await this.prisma.task.update({
+    return await this.prisma.task.update({
       where: {id},
       data: {
         descripcion,
         completada
       }
     })
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Registro actualizado',
-      result: updatedTask
-    }
   };
 
   async remove(id: number) {
-    const aTask = await this.findTaskById(id);
-    await this.prisma.task.delete({where: { id }})
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Registro eliminado',
-      result: aTask
-    }
+    await this.findTaskById(id);
+    return await this.prisma.task.delete({where: { id }})
   };
 };

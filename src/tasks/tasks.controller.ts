@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
@@ -18,7 +18,11 @@ export class TasksController {
     type: CreateTaskDto,
   })
   async create(@Body() createTaskDto: CreateTaskDto) {
-    return await this.tasksService.create(createTaskDto);
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Registro creado',
+      result: await this.tasksService.create(createTaskDto)
+    }
   };
 
   @Get()
@@ -26,7 +30,11 @@ export class TasksController {
   @ApiResponse({ status: 200, description: 'Lista de registros' })
   @ApiResponse({ status: 400, description: 'Error al consultar datos' })
   async findAll() {
-    return await this.tasksService.findAll();
+      return {
+      statusCode: HttpStatus.OK,
+      message: 'Lista de registros',
+      result: await this.tasksService.findAll()
+    }
   }
 
   @Get(':id')
@@ -35,7 +43,11 @@ export class TasksController {
   @ApiResponse({ status: 400, description: 'Registro inexistente' })
   @ApiParam({ name: 'id', description: 'ID de la tarea', type: Number })
   async findOne(@Param('id') id: string) {
-    return await this.tasksService.findOne(+id);
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Registro encontrado',
+      result: await this.tasksService.findOne(+id)
+    }
   }
 
   @Patch(':id')
@@ -44,7 +56,11 @@ export class TasksController {
   @ApiResponse({ status: 400, description: 'Registro inexistente.' })
   @ApiParam({ name: 'id', description: 'ID de la tarea', type: Number })
   async update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
-    return await this.tasksService.update(+id, updateTaskDto);
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Registro actualizado',
+      result: await this.tasksService.update(+id, updateTaskDto)
+    }
   }
 
   @Delete(':id')
@@ -53,6 +69,10 @@ export class TasksController {
   @ApiResponse({ status: 400, description: 'Registro inexistente' })
   @ApiParam({ name: 'id', description: 'ID de la tarea', type: Number })
   async remove(@Param('id') id: string) {
-    return await this.tasksService.remove(+id);
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Registro eliminado',
+      result: await this.tasksService.remove(+id)
+    }
   }
 }

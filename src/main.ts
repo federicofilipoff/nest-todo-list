@@ -8,6 +8,12 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
 
+  // Habilitar CORS
+  app.enableCors({
+    origin: 'http://localhost:5173', // Dominio front-end
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  });
+
   // Swagger: documentación
   const config = new DocumentBuilder()
     .setTitle('Documentación de la API')
