@@ -19,7 +19,7 @@ export class TasksController {
   })
   async create(@Body() createTaskDto: CreateTaskDto) {
     return {
-      statusCode: HttpStatus.OK,
+      statusCode: HttpStatus.CREATED,
       message: 'Registro creado',
       result: await this.tasksService.create(createTaskDto)
     }
